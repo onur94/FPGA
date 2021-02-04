@@ -20,10 +20,10 @@ component Shift_Reg
     );
 end component;
 
-signal data_in : std_logic := '0';
-signal reset : std_logic := '0';
-signal clk : std_logic := '1';
-signal a, b, c, d: std_logic;
+signal data_in      : std_logic := '0';
+signal reset        : std_logic := '0';
+signal clk          : std_logic := '1';
+signal a, b, c, d   : std_logic;
 
 begin
 
