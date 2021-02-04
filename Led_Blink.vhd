@@ -14,7 +14,7 @@ begin
 	process (clk)    												
 		variable count : integer range 0 to 50000000 := 0;
 		variable state : std_logic := '0';
-	begin       		
+    begin       		
 		if rising_edge(clk) then
 		  count := count + 1;
 			if count = 50000000 then                           
