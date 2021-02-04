@@ -16,7 +16,7 @@ begin
 		variable state : std_logic := '0';
 	begin       		
 		if rising_edge(clk) then
-		  count := count + 1;
+			count := count + 1;
 			if count = 50000000 then                           
 				state := state XOR '1';
 				count := 0;
