@@ -2,11 +2,11 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;                  
                    
 entity Led_Blink is                                        
-	port
-	(
-		clk : in std_logic;                                   
-		led : out std_logic := '0'
-	);     
+    port
+    (
+        clk : in std_logic;                                   
+        led : out std_logic := '0'
+    );     
 end Led_Blink;
                                               
 architecture Behavioral of Led_Blink is                                     
