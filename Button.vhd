@@ -5,8 +5,8 @@ entity Button is
 	port
 	(
 		button 	: in std_logic;
-		clk 		: in std_logic;                                   
-		led 		: out std_logic := '0'
+		clk 	: in std_logic;                                   
+		led 	: out std_logic := '0'
 	);     
 end Button;
                                               

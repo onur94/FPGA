@@ -5,7 +5,7 @@ entity Button_counter is
 	port
 	(
 		button 	: in std_logic;                                 
-		led 		: buffer STD_LOGIC := '0'
+		led 	: buffer STD_LOGIC := '0'
 	);     
 end Button_counter;
                                               

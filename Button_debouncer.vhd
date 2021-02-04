@@ -5,7 +5,7 @@ entity Button_debouncer is
 	port
 	(
 		input 	: in std_logic;
-		clk 		: in std_logic;                                   
+		clk 	: in std_logic;                                   
 		output 	: buffer std_logic := '0'
 	);     
 end Button_debouncer;

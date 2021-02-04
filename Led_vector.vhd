@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Led_vector is
     port ( 
         clock : in std_logic;
-        led : out STD_LOGIC_VECTOR(2 downto 0) -- 3 bit vector
+        led   : out STD_LOGIC_VECTOR(2 downto 0) -- 3 bit vector
     );
 end Led_vector;
 

@@ -4,9 +4,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Half_Adder is
 	port 
 	(
-		a 		: in std_logic;
-		b 		: in std_logic;
-		sum 	: out std_logic;
+		a 	  : in std_logic;
+		b 	  : in std_logic;
+		sum   : out std_logic;
 		carry : out std_logic
 	);
 end Half_Adder;

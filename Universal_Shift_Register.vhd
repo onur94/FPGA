@@ -5,11 +5,11 @@ entity Universal_Shift_Register is
 	generic (
 		data_width	: integer := 8);
 	Port (
-		A 		: out std_logic_vector(data_width - 1 downto 0);
-		I 		: in std_logic_vector(data_width - 1 downto 0);
-		S 		: in std_logic_vector(1 downto 0);
+		A     : out std_logic_vector(data_width - 1 downto 0);
+		I 	  : in std_logic_vector(data_width - 1 downto 0);
+		S 	  : in std_logic_vector(1 downto 0);
 		reset : in std_logic;
-		clk 	: in std_logic);
+		clk   : in std_logic);
 end Universal_Shift_Register;
 
 architecture Behavioral of Universal_Shift_Register is

@@ -5,7 +5,7 @@ entity Shift_Reg is
 	port
 	(
 		clk 		: in std_logic; 
-		data_in	: in std_logic;
+		data_in		: in std_logic;
 		reset		: in std_logic;
 		a 			: out std_logic;
 		b 			: out std_logic;

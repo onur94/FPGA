@@ -4,8 +4,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Led_2_second_delay IS                                        
 	port
 	(
-		clk 	: in std_logic;                                   
-		led 	: out std_logic := '1'
+		clk : in std_logic;                                   
+		led : out std_logic := '1'
 	);     
 end Led_2_second_delay;
                                               
