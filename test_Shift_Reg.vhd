@@ -8,13 +8,13 @@ end;
 architecture test of test_Shift_Reg is
   
 component Shift_Reg
-port (a			: out std_logic;
-      b			: out std_logic;
-	  c			: out std_logic;
-	  d			: out std_logic;
-	  data_in	: in std_logic;
-	  reset		: in std_logic;
-	  clk		: in std_logic);
+port (a		: out std_logic;
+      b		: out std_logic;
+      c		: out std_logic;
+      d		: out std_logic;
+      data_in	: in std_logic;
+      reset	: in std_logic;
+     clk	: in std_logic);
 end component;
 
 signal data_in : std_logic := '0';
