@@ -4,13 +4,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Shift_Reg is
     port
     (
-        clk 	: in std_logic; 
-        data_in	: in std_logic;
-        reset	: in std_logic;
-        a 	: out std_logic;
-        b 	: out std_logic;
-        c	: out std_logic;
-        d 	: out std_logic
+        clk     : in std_logic; 
+        data_in : in std_logic;
+        reset   : in std_logic;
+        a       : out std_logic;
+        b       : out std_logic;
+        c       : out std_logic;
+        d       : out std_logic
     );     
 end Shift_Reg;
 
