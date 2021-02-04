@@ -12,7 +12,7 @@ end Led_Blink;
 architecture Behavioral of Led_Blink is                                     
 begin                                                                  
     process (clk)    												
-        count : integer range 0 to 50000000 := 0;
+        variable count : integer range 0 to 50000000 := 0;
         variable state : std_logic := '0';
     begin       		
         if rising_edge(clk) then
