@@ -4,11 +4,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Full_Adder_2 is
     port 
     (
-        a 		: in std_logic;
-        b 		: in std_logic;
-        carry_in 	: in std_logic;
-        carry_out 	: out std_logic;
-        sum 		: out std_logic
+        a           : in std_logic;
+        b           : in std_logic;
+        carry_in    : in std_logic;
+        carry_out   : out std_logic;
+        sum         : out std_logic
     );
 end Full_Adder_2;
 

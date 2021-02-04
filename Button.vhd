@@ -4,9 +4,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Button is                                        
     port
     (
-        button 	: in std_logic;
-        clk 	: in std_logic;                                   
-        led 	: out std_logic := '0'
+        button  : in std_logic;
+        clk     : in std_logic;                                   
+        led     : out std_logic := '0'
     );     
 end Button;
 
