@@ -20,7 +20,7 @@ begin
                 no := no + 1;
                 if no = 4 then
                     no := 0;
-                END if;
+                end if;
                 counter <= 0;
             end if;
             case no is
