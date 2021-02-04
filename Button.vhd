@@ -24,7 +24,7 @@ begin
                     count := 0;
                 end if; 
             end if;
-        led <= state;
+            led <= state;
         else
             count := 0;
             led <= '0';

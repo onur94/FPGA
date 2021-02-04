@@ -8,7 +8,8 @@ end;
 architecture test of test_Shift_Reg is
 
 component Shift_Reg
-    port (
+    port 
+    (
         a		: out std_logic;
         b		: out std_logic;
         c		: out std_logic;
@@ -27,7 +28,7 @@ signal a, b, c, d: std_logic;
 begin
 
     dev_to_test:  shift_reg 
-    port map(a, b, c, d, data_in, reset, clk); 
+        port map(a, b, c, d, data_in, reset, clk); 
 
     clk_stimulus:  process
     begin
