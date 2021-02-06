@@ -1,9 +1,9 @@
 Entity Button_debouncer Is
-	Port (
-		input  : In     STD_LOGIC;
-		clk    : In     STD_LOGIC;
-		output : Buffer STD_LOGIC := '0'
-	);
+    Port (
+        input  : In     STD_LOGIC;
+        clk    : In     STD_LOGIC;
+        output : Buffer STD_LOGIC := '0'
+    );
 End Button_debouncer;
 
 Architecture Behavioral Of Button_debouncer Is
