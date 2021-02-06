@@ -9,7 +9,7 @@ End Button_debouncer;
 Architecture Behavioral Of Button_debouncer Is
 Begin
 	Process (input, clk)
-		Variable counter : INTEGER Range 0 To 50000000 := 0;
+        Variable counter : INTEGER Range 0 To 50000000 := 0;
 		Variable pressed : BOOLEAN;
 	Begin
 		If rising_edge(clk) Then
