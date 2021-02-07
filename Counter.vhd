@@ -12,10 +12,10 @@ entity Counter is
 end Counter;
 
 architecture Behavioral of Counter is
-    signal counter : unsigned(3 downto 0) := (others => '0');
-    signal counter_2 : unsigned(3 downto 0) := (others => '0');
-    constant maxcount : integer := 50000000;
-    constant maxcount_2 : integer := 15;
+    signal counter      : unsigned(3 downto 0) := (others => '0');
+    signal counter_2    : unsigned(3 downto 0) := (others => '0');
+    constant maxcount   : integer              := 50000000;
+    constant maxcount_2 : integer              := 15;
 begin
     count <= std_logic_vector(counter_2);
 
