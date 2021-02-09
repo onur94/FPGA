@@ -9,6 +9,7 @@ entity State_Machine is
         led : out std_logic_vector (2 downto 0) := (others => '0')
     );
 end State_Machine;
+
 architecture Behavioral of State_Machine is
     type my_states is (IDLE, State_1, State_2);
     signal state  : my_states;
