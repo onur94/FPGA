@@ -1,27 +1,27 @@
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;                
+use IEEE.STD_LOGIC_1164.all;
 
-entity Button_debouncer is                                        
+entity Button_debouncer is
     port
     (
-        input   : in std_logic;
-        clk     : in std_logic;                                   
-        output  : buffer std_logic := '0'
-    );     
+        input  : in  std_logic;
+        clk    : in  std_logic;
+        output : out std_logic := '0'
+    );
 end Button_debouncer;
 
-architecture Behavioral of Button_debouncer is                                     
-begin                                                                  
-    process (input, clk)    												
+architecture Behavioral of Button_debouncer is
+begin
+    process (input, clk)
         variable counter : integer range 0 to 50000000 := 0;
         variable pressed : boolean;
-    begin 
+    begin
         if rising_edge(clk) then
             if input = '1' then
                 pressed := true;
             else
                 output <= '0';
-            end if;	
+            end if;
             if pressed = true then
                 counter := counter + 1;
                 if counter = 2500000 then
@@ -32,8 +32,8 @@ begin
                     else
                         output <= '0';
                     end if;
-                end if; 
+                end if;
             end if;
         end if;
-    end process;                           
+    end process;
 end Behavioral;
