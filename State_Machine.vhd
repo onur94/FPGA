@@ -28,12 +28,15 @@ begin
                 when IDLE =>
                     output <= "001";
                     state  <= State_1;
+                    
                 when State_1 =>
                     output <= "010";
                     state  <= State_2;
+                    
                 when State_2 =>
                     output <= "100";
                     state  <= IDLE;
+                    
                 when others =>
                     output <= "000";
                     state  <= IDLE;
