@@ -12,7 +12,7 @@ end State_Machine;
 
 architecture Behavioral of State_Machine is
     type my_states is (IDLE, State_1, State_2);
-    signal state  : my_states;
+    signal state : my_states;
 
     signal output : std_logic_vector (2 downto 0) := (others => '0');
 begin
@@ -21,25 +21,25 @@ begin
     process (clk)
     begin
         if rst = '1' then
-            state  <= IDLE;
+            state <= IDLE;
             output <= (others => '0');
         elsif rising_edge(clk) then
             case state is
                 when IDLE =>
                     output <= "001";
-                    state  <= State_1;
-                    
+                    state <= State_1;
+
                 when State_1 =>
                     output <= "010";
-                    state  <= State_2;
-                    
+                    state <= State_2;
+
                 when State_2 =>
                     output <= "100";
-                    state  <= IDLE;
-                    
+                    state <= IDLE;
+
                 when others =>
                     output <= "000";
-                    state  <= IDLE;
+                    state <= IDLE;
             end case;
         end if;
     end process;
