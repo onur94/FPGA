@@ -3,7 +3,6 @@ use IEEE.STD_LOGIC_1164.all;
 use IEEE.numeric_std.all;
 
 entity tb_Counter is
-
 end tb_Counter;
 
 architecture tb of tb_Counter is
