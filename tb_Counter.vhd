@@ -22,7 +22,7 @@ architecture tb of tb_Counter is
     signal reset : std_logic := '0';
 
 begin
-    process
+    clk_stimulus : process
     begin
         clk <= clk xor '1';
         wait for 50 ps;
@@ -31,7 +31,7 @@ begin
     uut : Counter port map
         (count, clk, reset);
 
-    process
+    data_stimulus : process
     begin
         reset <= '1';
         wait for 200 ps;

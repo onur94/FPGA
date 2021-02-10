@@ -2,10 +2,10 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.all;
 
-entity test_Shift_Reg is
+entity tb_Shift_Reg is
 end;
 
-architecture test of test_Shift_Reg is
+architecture tb of tb_Shift_Reg is
 
 component Shift_Reg
     port 
@@ -27,20 +27,20 @@ signal a, b, c, d   : std_logic;
 
 begin
 
-    dev_to_test:  shift_reg 
+    uut : shift_reg 
         port map(a, b, c, d, data_in, reset, clk); 
 
-    clk_stimulus:  process
+    clk_stimulus : process
     begin
         wait for 50 ps;
         clk <= not clk;
     end process clk_stimulus;
 
-    data_stimulus:  process
+    data_stimulus : process
     begin
         wait for 200 ps;
         data_in <= not data_in;
         wait for 400 ps;
     end process data_stimulus;
 
-end test;
+end tb;
