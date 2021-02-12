@@ -10,6 +10,7 @@ entity Button_PWM is
         duty   : out std_logic_vector (15 downto 0) -- 50000
     );
 end Button_PWM;
+
 architecture Behavioral of Button_PWM is
     type my_states is (Level_1, Level_2, Level_3, Level_4, Level_5, Level_6);
     signal state : my_states;
