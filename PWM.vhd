@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
-use ieee.std_logic_unsigned.all;
+use IEEE.STD_LOGIC_UNSIGNED.all;
 
 entity PWM is
     generic (
