@@ -19,9 +19,9 @@ entity PWM is
 end PWM;
 
 architecture Behavioral of PWM is
-    constant period 		: integer := clk_freq/pwm_freq;
-    signal count 			: integer range 0 to period + 1 := 0;
-    signal pwm_out_reg	: std_logic := '0';
+    constant period : integer := clk_freq/pwm_freq;
+    signal count : integer range 0 to period + 1 := 0;
+    signal pwm_out_reg : std_logic := '0';
 
 begin
     pwm_out <= pwm_out_reg;
