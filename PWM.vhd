@@ -33,10 +33,10 @@ begin
         elsif rising_edge(clk) then
             if enable = '1' then
                 count <= count + 1;
-                if count <= period - 1 then
-                    if count <= duty - 1 then
+                if count < period then
+                    if count < duty then
                         pwm_out_reg <= '1';
-                    elsif count >= duty - 1 then
+                    elsif count >= duty then
                         pwm_out_reg <= '0';
                     end if;
                 else
