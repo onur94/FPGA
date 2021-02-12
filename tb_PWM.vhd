@@ -24,7 +24,7 @@ architecture tb of tb_PWM is
     signal clk : std_logic := '0';
     signal rst : std_logic := '0';
     signal enable : std_logic := '1';
-    signal duty : std_logic_vector(16 - 1 downto 0) := std_logic_vector(to_unsigned(12500, 16));
+    signal duty : std_logic_vector(15 downto 0) := std_logic_vector(to_unsigned(12500, 16));
     signal pwm_out : std_logic;
 
 begin
