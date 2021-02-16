@@ -50,7 +50,7 @@ architecture behavior of PCF8591 is
   signal i2c_data_rd  : std_logic_vector(7 downto 0);   --i2c read data
   signal i2c_busy     : std_logic;                      --i2c busy signal
   signal busy_prev    : std_logic;                      --previous value of i2c busy signal
-  signal adc_buffer	  : std_logic_vector(7 downto 0);   --ADC Channel 0 data buffer
+  signal adc_buffer   : std_logic_vector(7 downto 0);   --ADC Channel 0 data buffer
 
   component I2C_Master is
     generic
