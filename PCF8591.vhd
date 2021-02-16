@@ -28,7 +28,7 @@ architecture behavior of PCF8591 is
     signal i2c_data_rd  : std_logic_vector(7 downto 0);   --i2c read data
     signal i2c_busy     : std_logic;                      --i2c busy signal
     signal busy_prev    : std_logic;                      --previous value of i2c busy signal
-    signal adc_buffer   : std_logic_vector(7 downto 0);   --ADC Channel 0 data buffer
+    signal adc_buffer   : std_logic_vector(7 downto 0);   --ADC Channel data buffer
 
     component I2C_Master is
         generic
@@ -48,7 +48,7 @@ architecture behavior of PCF8591 is
             data_rd   : out    std_logic_vector(7 downto 0); --data read from slave
             ack_error : buffer std_logic;                    --flag if improper acknowledge from slave
             sda       : inout  std_logic;                    --serial data output of i2c bus
-            scl       : inout  std_logic 					   --serial clock output of i2c bus
+            scl       : inout  std_logic 					 --serial clock output of i2c bus
         );                   
     end component;
 
@@ -102,8 +102,8 @@ begin
               i2c_ena <= '0';                            --deassert enable to stop transaction after command 2
               if(i2c_busy = '0') then                    --indicates data read in command 2 is ready
                 adc_buffer(7 downto 0) <= i2c_data_rd;   --retrieve data from command 4
-                busy_cnt := 0;                             --reset busy_cnt for next transaction
-                state <= output_result;                    --transaction complete, go to next state in design
+                busy_cnt := 0;                           --reset busy_cnt for next transaction
+                state <= output_result;                  --transaction complete, go to next state in design
               end if;
             when others => NULL;
           end case;
