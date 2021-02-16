@@ -132,8 +132,8 @@ begin
 
         --match received ADC data to outputs
         when output_result =>
-			adc_ch0_data <= adc_buffer;
-			state <= start;
+          adc_ch0_data <= adc_buffer;
+          state <= start;
 			
         --default to start state
         when others =>
