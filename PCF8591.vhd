@@ -24,55 +24,55 @@ library IEEE;
 use IEEE.std_logic_1164.ALL;
 
 entity PCF8591 is
-  generic
-  (
-    sys_clk_freq : integer := 50_000_000
-  );                --input clock speed from user logic in Hz
-  port
-  (
-    clk          : in    std_logic;                       --system clock
-    reset        : in    std_logic;                       --asynchronous active-low reset
-    scl          : inout std_logic;                       --I2C serial clock
-    sda          : inout std_logic;                       --I2C serial data
-    i2c_ack_err  : out   std_logic;                       --I2C slave acknowledge error flag
-    adc_ch0_data : out   std_logic_vector(7 downto 0)     --ADC Channel 0 data obtained
-  );
+    generic
+    (
+        sys_clk_freq : integer := 50_000_000                  --input clock speed from user logic in Hz
+    );               
+    port
+    (
+        clk          : in    std_logic;                       --system clock
+        reset        : in    std_logic;                       --asynchronous active-low reset
+        scl          : inout std_logic;                       --I2C serial clock
+        sda          : inout std_logic;                       --I2C serial data
+        i2c_ack_err  : out   std_logic;                       --I2C slave acknowledge error flag
+        adc_ch0_data : out   std_logic_vector(7 downto 0)     --ADC Channel 0 data obtained
+    );
 end PCF8591;
 
 architecture behavior of PCF8591 is
-  type machine is(start, read_data, output_result);     --needed states
-  signal state        : machine;                        --state machine
-  signal config       : std_logic_vector(7 downto 0);   --value to set the Sensor Configuration Register
-  signal i2c_ena      : std_logic;                      --i2c enable signal
-  signal i2c_addr     : std_logic_vector(6 downto 0);   --i2c address signal
-  signal i2c_rw       : std_logic;                      --i2c read/write command signal
-  signal i2c_data_wr  : std_logic_vector(7 downto 0);   --i2c write data
-  signal i2c_data_rd  : std_logic_vector(7 downto 0);   --i2c read data
-  signal i2c_busy     : std_logic;                      --i2c busy signal
-  signal busy_prev    : std_logic;                      --previous value of i2c busy signal
-  signal adc_buffer   : std_logic_vector(7 downto 0);   --ADC Channel 0 data buffer
+    type machine is(start, read_data, output_result);     --needed states
+    signal state        : machine;                        --state machine
+    signal config       : std_logic_vector(7 downto 0);   --value to set the Sensor Configuration Register
+    signal i2c_ena      : std_logic;                      --i2c enable signal
+    signal i2c_addr     : std_logic_vector(6 downto 0);   --i2c address signal
+    signal i2c_rw       : std_logic;                      --i2c read/write command signal
+    signal i2c_data_wr  : std_logic_vector(7 downto 0);   --i2c write data
+    signal i2c_data_rd  : std_logic_vector(7 downto 0);   --i2c read data
+    signal i2c_busy     : std_logic;                      --i2c busy signal
+    signal busy_prev    : std_logic;                      --previous value of i2c busy signal
+    signal adc_buffer   : std_logic_vector(7 downto 0);   --ADC Channel 0 data buffer
 
-  component I2C_Master is
-    generic
-	(
-      input_clk : integer;  --input clock speed from user logic in Hz
-      bus_clk   : integer   --speed the i2c bus (scl) will run at in Hz
-	); 
-    port
-	(
-      clk       : in     std_logic;                    --system clock
-      reset     : in     std_logic;                    --active low reset
-      ena       : in     std_logic;                    --latch in command
-      addr      : in     std_logic_vector(6 downto 0); --address of target slave
-      rw        : in     std_logic;                    --'0' is write, '1' is read
-      data_wr   : in     std_logic_vector(7 downto 0); --data to write to slave
-      busy      : out    std_logic;                    --indicates transaction in progress
-      data_rd   : out    std_logic_vector(7 downto 0); --data read from slave
-      ack_error : buffer std_logic;                    --flag if improper acknowledge from slave
-      sda       : inout  std_logic;                    --serial data output of i2c bus
-      scl       : inout  std_logic 					   --serial clock output of i2c bus
-	);                   
-  end component;
+    component I2C_Master is
+        generic
+        (
+            input_clk : integer;  --input clock speed from user logic in Hz
+            bus_clk   : integer   --speed the i2c bus (scl) will run at in Hz
+        ); 
+        port
+        (
+            clk       : in     std_logic;                    --system clock
+            reset     : in     std_logic;                    --active low reset
+            ena       : in     std_logic;                    --latch in command
+            addr      : in     std_logic_vector(6 downto 0); --address of target slave
+            rw        : in     std_logic;                    --'0' is write, '1' is read
+            data_wr   : in     std_logic_vector(7 downto 0); --data to write to slave
+            busy      : out    std_logic;                    --indicates transaction in progress
+            data_rd   : out    std_logic_vector(7 downto 0); --data read from slave
+            ack_error : buffer std_logic;                    --flag if improper acknowledge from slave
+            sda       : inout  std_logic;                    --serial data output of i2c bus
+            scl       : inout  std_logic 					   --serial clock output of i2c bus
+        );                   
+    end component;
 
 begin
 
