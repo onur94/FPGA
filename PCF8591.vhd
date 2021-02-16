@@ -1,25 +1,3 @@
---------------------------------------------------------------------------------
---
---   FileName:         pmod_adc_ad7991.vhd
---   Dependencies:     i2c_master.vhd (Version 2.2)
---   Design Software:  Quartus Prime Version 17.0.0 Build 595 SJ Lite Edition
---
---   HDL CODE is PROVIDED "AS is."  DIGI-KEY EXPRESSLY DisCLAIMS ANY
---   WARRANTY of ANY KinD, WHETHER EXPRESS OR IMPLIED, inCLUDinG BUT NOT
---   LIMITED to, THE IMPLIED WARRANTIES of MERCHANTABILITY, FITNESS FOR A
---   PARTICULAR PURPOSE, OR NON-inFRinGEMENT. in NO EVENT SHALL DIGI-KEY
---   BE LIABLE FOR ANY inCIDENTAL, SPECIAL, inDIRECT OR CONSEQUENTIAL
---   DAMAGES, LOST PRofITS OR LOST DATA, HARM to YOUR EQUIPMENT, COST of
---   PROCUREMENT of SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
---   BY THIRD PARTIES (inCLUDinG BUT NOT LIMITED to ANY DEFENSE THEREof),
---   ANY CLAIMS FOR inDEMNITY OR CONTRIBUTION, OR OTHER SIMILAR COSTS.
---
---   Version History
---   Version 1.0 09/18/2020 Scott Larson
---     initial Public Release
--- 
---------------------------------------------------------------------------------
-
 library IEEE;
 use IEEE.std_logic_1164.ALL;
 
