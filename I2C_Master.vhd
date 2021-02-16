@@ -33,7 +33,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.all;
 
-entity i2c_master is
+entity I2C_Master is
   generic(
     input_clk : integer := 50_000_000; --input clock speed from user logic in hz
     bus_clk   : integer := 400_000);   --speed the i2c bus (scl) will run at in hz
@@ -49,9 +49,9 @@ entity i2c_master is
     ack_error : buffer std_logic;                    --flag if improper acknowledge from slave
     sda       : inout  std_logic;                    --serial data output of i2c bus
     scl       : inout  std_logic);                   --serial clock output of i2c bus
-end i2c_master;
+end I2C_Master;
 
-architecture logic of i2c_master is
+architecture logic of I2C_Master is
   constant divider  :  integer := (input_clk/bus_clk)/4; --number of clocks in 1/4 cycle of scl
   type machine is(ready, start, command, slv_ack1, wr, rd, slv_ack2, mstr_ack, stop); --needed states
   signal state         : machine;                        --state machine
@@ -241,7 +241,7 @@ begin
                  sda_int when others;          --set to internal sda signal    
       
   --set scl and sda outputs
-  scl <= '0' when (scl_ena = '1' and scl_clk = '0') else 'z';
-  sda <= '0' when sda_ena_n = '0' else 'z';
+  scl <= '0' when (scl_ena = '1' and scl_clk = '0') else 'Z';
+  sda <= '0' when sda_ena_n = '0' else 'Z';
   
 end logic;
