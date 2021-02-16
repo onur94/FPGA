@@ -113,21 +113,21 @@ begin
             busy_cnt := busy_cnt + 1;                       --counts the times busy has gone from low to high during transaction
           end if;
           case busy_cnt is                                --busy_cnt keeps track of which command we are on
-			when 0 =>                                  --no command latched in yet
-			  i2c_ena <= '1';                            --initiate the transaction
-			  i2c_addr <= "1001000";                     --set the address of the slave
-			  i2c_rw <= '0';                             --command 0 is a write
-			  i2c_data_wr <= "01000011";                 --data to be written
-			when 1 =>                                  --1st busy high: command 1 latched, okay to issue command 2
-			  i2c_rw <= '1';                             --command 1 is a read (addr stays the same)
-			when 2 =>                                  --2th busy high: command 4 latched, ready to stop
-			  i2c_ena <= '0';                            --deassert enable to stop transaction after command 2
-			  if(i2c_busy = '0') then                    --indicates data read in command 2 is ready
-				adc_buffer(7 downto 0) <= i2c_data_rd;   --retrieve data from command 4
-				busy_cnt := 0;                             --reset busy_cnt for next transaction
-				state <= output_result;                    --transaction complete, go to next state in design
-			  end if;
-			when others => NULL;
+            when 0 =>                                  --no command latched in yet
+              i2c_ena <= '1';                            --initiate the transaction
+              i2c_addr <= "1001000";                     --set the address of the slave
+              i2c_rw <= '0';                             --command 0 is a write
+              i2c_data_wr <= "01000011";                 --data to be written
+            when 1 =>                                  --1st busy high: command 1 latched, okay to issue command 2
+              i2c_rw <= '1';                             --command 1 is a read (addr stays the same)
+            when 2 =>                                  --2th busy high: command 4 latched, ready to stop
+              i2c_ena <= '0';                            --deassert enable to stop transaction after command 2
+              if(i2c_busy = '0') then                    --indicates data read in command 2 is ready
+                adc_buffer(7 downto 0) <= i2c_data_rd;   --retrieve data from command 4
+                busy_cnt := 0;                             --reset busy_cnt for next transaction
+                state <= output_result;                    --transaction complete, go to next state in design
+              end if;
+            when others => NULL;
           end case;
 
         --match received ADC data to outputs
