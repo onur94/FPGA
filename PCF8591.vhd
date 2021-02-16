@@ -1,5 +1,5 @@
 library IEEE;
-use IEEE.std_logic_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 entity PCF8591 is
     generic
