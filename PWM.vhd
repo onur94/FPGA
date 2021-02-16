@@ -3,7 +3,8 @@ use IEEE.STD_LOGIC_1164.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
 
 entity PWM is
-    generic (
+    generic 
+    (
         clk_freq       : integer := 50000000;
         pwm_freq       : integer := 1000;
         pwm_resolution : integer := 16
