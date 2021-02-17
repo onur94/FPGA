@@ -59,16 +59,16 @@ architecture Behavioral of PCF8591_Uart_TX is
 	component UART_TX is
         generic 
         (
-            g_CLKS_PER_BIT  : integer := 434
+            g_CLKS_PER_BIT : integer := 434
         );
         port 
         (
-            i_Clk           : in  std_logic;
-            i_TX_DV         : in  std_logic;
-            i_TX_Byte       : in  std_logic_vector(7 downto 0);
-            o_TX_Active     : out std_logic;
-            o_TX_Serial     : out std_logic;
-            o_TX_Done       : out std_logic
+            i_Clk          : in  std_logic;
+            i_TX_DV        : in  std_logic;
+            i_TX_Byte      : in  std_logic_vector(7 downto 0);
+            o_TX_Active    : out std_logic;
+            o_TX_Serial    : out std_logic;
+            o_TX_Done      : out std_logic
         );
 	end component;
 
