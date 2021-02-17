@@ -59,7 +59,7 @@ architecture Behavioral of PCF8591_Uart_TX is
 	component UART_TX is
         generic 
         (
-            g_CLKS_PER_BIT : integer := 434
+            g_CLKS_PER_BIT : integer
         );
         port 
         (
