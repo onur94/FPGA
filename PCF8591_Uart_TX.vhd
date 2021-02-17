@@ -14,7 +14,7 @@ entity PCF8591_Uart_TX is
         sda          : inout std_logic;                       --I2C serial data
         i2c_ack_err  : out   std_logic;                       --I2C slave acknowledge error flag
         adc_ch0_data : out   std_logic_vector(7 downto 0);    --ADC Channel 0 data obtained
-        uart_output	 : out	 std_logic
+        uart_output  : out   std_logic
     );
 end PCF8591_Uart_TX;
 
@@ -59,16 +59,16 @@ architecture Behavioral of PCF8591_Uart_TX is
 	component UART_TX is
         generic 
         (
-            g_CLKS_PER_BIT : integer := 434
+            g_CLKS_PER_BIT  : integer := 434
         );
         port 
         (
-            i_Clk       : in  std_logic;
-            i_TX_DV     : in  std_logic;
-            i_TX_Byte   : in  std_logic_vector(7 downto 0);
-            o_TX_Active : out std_logic;
-            o_TX_Serial : out std_logic;
-            o_TX_Done   : out std_logic
+            i_Clk           : in  std_logic;
+            i_TX_DV         : in  std_logic;
+            i_TX_Byte       : in  std_logic_vector(7 downto 0);
+            o_TX_Active     : out std_logic;
+            o_TX_Serial     : out std_logic;
+            o_TX_Done       : out std_logic
         );
 	end component;
 
@@ -85,7 +85,7 @@ begin
   uart_tx_0: UarT_TX
     generic map(g_CLKS_PER_BIT => 434)  -- 50_000_000/115_200 = 434
     port map(i_Clk => clk, i_TX_DV => uart_active, i_TX_Byte => uart_data, 
-    o_TX_Active => open, o_TX_Serial => uart_output, o_TX_Done => open);
+             o_TX_Active => open, o_TX_Serial => uart_output, o_TX_Done => open);
 
   process(clk, reset)
     variable busy_cnt : integer range 0 to 2 := 0;            --counts the busy signal transistions during one transaction
