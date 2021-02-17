@@ -14,7 +14,7 @@ entity PCF8591_Uart_TX is
         sda          : inout std_logic;                       --I2C serial data
         i2c_ack_err  : out   std_logic;                       --I2C slave acknowledge error flag
         adc_ch0_data : out   std_logic_vector(7 downto 0);    --ADC Channel 0 data obtained
-		uart_output	 : out	 std_logic
+        uart_output	 : out	 std_logic
     );
 end PCF8591_Uart_TX;
 
@@ -57,19 +57,19 @@ architecture Behavioral of PCF8591_Uart_TX is
 	signal uart_data   : std_logic_vector(7 downto 0) := (others => '0');
 	
 	component UART_TX is
-		generic 
-		(
-			g_CLKS_PER_BIT : integer := 434
-		);
-		port 
-		(
-			i_Clk       : in  std_logic;
-			i_TX_DV     : in  std_logic;
-			i_TX_Byte   : in  std_logic_vector(7 downto 0);
-			o_TX_Active : out std_logic;
-			o_TX_Serial : out std_logic;
-			o_TX_Done   : out std_logic
-		);
+        generic 
+        (
+            g_CLKS_PER_BIT : integer := 434
+        );
+        port 
+        (
+            i_Clk       : in  std_logic;
+            i_TX_DV     : in  std_logic;
+            i_TX_Byte   : in  std_logic_vector(7 downto 0);
+            o_TX_Active : out std_logic;
+            o_TX_Serial : out std_logic;
+            o_TX_Done   : out std_logic
+        );
 	end component;
 
 begin
@@ -83,9 +83,9 @@ begin
              scl => scl);
 			 
   uart_tx_0: UarT_TX
-	generic map(g_CLKS_PER_BIT => 434)  -- 50_000_000/115_200 = 434
-	port map(i_Clk => clk, i_TX_DV => uart_active, i_TX_Byte => uart_data, 
-	o_TX_Active => open, o_TX_Serial => uart_output, o_TX_Done => open);
+    generic map(g_CLKS_PER_BIT => 434)  -- 50_000_000/115_200 = 434
+    port map(i_Clk => clk, i_TX_DV => uart_active, i_TX_Byte => uart_data, 
+    o_TX_Active => open, o_TX_Serial => uart_output, o_TX_Done => open);
 
   process(clk, reset)
     variable busy_cnt : integer range 0 to 2 := 0;            --counts the busy signal transistions during one transaction
@@ -121,8 +121,8 @@ begin
               i2c_addr <= "1001000";                     --set the address of the slave
               i2c_rw <= '0';                             --command 0 is a write
               i2c_data_wr <= "01000011";                 --data to be written
-			when 1 =>
-			  i2c_rw <= '1';                             --command 1 is a read
+            when 1 =>
+                i2c_rw <= '1';                             --command 1 is a read
             when 2 =>          			               --2th busy high: command 2 latched, ready to st
               i2c_ena <= '0';                            --deassert enable to stop transaction after command 2
               if(i2c_busy = '0') then                    --indicates data read in command 2 is ready
@@ -130,15 +130,15 @@ begin
                 busy_cnt := 0;                           --reset busy_cnt for next transaction
                 state <= output_result;                  --transaction complete, go to next state in design
               end if;
-			  uart_active <= '1';
+              uart_active <= '1';
             when others => NULL;
           end case;
 
         --match received ADC data to outputs
         when output_result =>
-			uart_data <= adc_buffer;
-			uart_active <= '0';
-			state <= start;
+            uart_data <= adc_buffer;
+            uart_active <= '0';
+            state <= start;
 			
         --default to start state
         when others =>
