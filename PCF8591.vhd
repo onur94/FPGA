@@ -18,7 +18,7 @@ entity PCF8591 is
     );
 end PCF8591;
 
-architecture behavior of PCF8591 is
+architecture Behavioral of PCF8591 is
     type machine is(start, start_adc, read_data, finish);   --needed states
     signal state : machine;                                 --state machine
     signal config       : std_logic_vector(7 downto 0);     --value to set the Sensor Configuration Register
@@ -144,4 +144,4 @@ begin
             end case;
         end if;
     end process;
-end behavior;
+end Behavioral;

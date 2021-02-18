@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 
-entity PCF8591_Uart_TX is
+entity PCF8591_DAC is
     generic 
     (
         sys_clk_freq : integer := 50_000_000
@@ -13,12 +13,11 @@ entity PCF8591_Uart_TX is
         scl         : inout std_logic;
         sda         : inout std_logic;
         i2c_ack_err : out   std_logic;
-        adc_output  : out   std_logic_vector(7 downto 0);
-        uart_output : out   std_logic
+        adc_output  : out   std_logic_vector(7 downto 0)
     );
-end PCF8591_Uart_TX;
+end PCF8591_DAC;
 
-architecture Behavioral of PCF8591_Uart_TX is
+architecture Behavioral of PCF8591_DAC is
     type machine is(start, start_adc, read_data, finish);   --needed states
     signal state : machine;                                 --state machine
     signal config       : std_logic_vector(7 downto 0);     --value to set the Sensor Configuration Register
@@ -53,25 +52,6 @@ architecture Behavioral of PCF8591_Uart_TX is
         );                   
     end component;
 
-    signal uart_active : std_logic := '0';
-    signal uart_data : std_logic_vector(7 downto 0) := (others => '0');
-
-    component UART_TX is
-        generic 
-        (
-            g_CLKS_PER_BIT : integer
-        );
-        port
-        (
-            i_Clk       : in  std_logic;
-            i_TX_DV     : in  std_logic;
-            i_TX_Byte   : in  std_logic_vector(7 downto 0);
-            o_TX_Active : out std_logic;
-            o_TX_Serial : out std_logic;
-            o_TX_Done   : out std_logic
-        );
-    end component;
-
 begin
 
     --instantiate the i2c master
@@ -81,11 +61,6 @@ begin
                  rw => i2c_rw, data_wr => i2c_data_wr, busy => i2c_busy,
                  data_rd => i2c_data_rd, ack_error => i2c_ack_err, sda => sda,
                  scl => scl);
-
-    uart_tx_0 : UART_TX
-        generic map(g_CLKS_PER_BIT => 434) -- 50_000_000/115_200 = 434
-        port map(i_Clk => clk, i_TX_DV => uart_active, i_TX_Byte => adc_data,
-                 o_TX_Active => open, o_TX_Serial => uart_output, o_TX_Done => open);
 
     adc_output <= adc_data;
 
@@ -99,7 +74,6 @@ begin
             busy_cnt := 0;
             adc_data <= (others => '0');
             state <= start;
-            uart_active <= '0';
         elsif rising_edge(clk) then
             case state is
 
@@ -123,8 +97,10 @@ begin
                             i2c_ena <= '1';
                             i2c_addr <= "1001000";
                             i2c_rw <= '0';
-                            i2c_data_wr <= "01000011";
-                        when 1 =>
+                            i2c_data_wr <= "01000000";
+						when 1 =>
+							i2c_data_wr <= "01010111";
+                        when 2 =>
                             i2c_ena <= '0';
                             if (i2c_busy = '0') then
                                 busy_cnt := 0;
@@ -144,11 +120,10 @@ begin
                             i2c_ena <= '1';
                             i2c_addr <= "1001000";
                             i2c_rw <= '1';
-                            i2c_data_wr <= "01000011";
+                            i2c_data_wr <= "01000000";
                         when 1 =>
                             i2c_ena <= '0';
                             if (i2c_busy = '0') then
-                                uart_active <= '1';
                                 adc_data(7 downto 0) <= i2c_data_rd;
                                 busy_cnt := 0;
                                 state <= finish;
@@ -158,7 +133,6 @@ begin
 
                 --output the ADC data
                 when finish =>
-                    uart_active <= '0';
                     state <= start;
 
                 --default to start state
