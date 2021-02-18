@@ -79,7 +79,6 @@ begin
         elsif rising_edge(clk) then
             case state is
 
-                --give ADC sensor 100ms to power up before communicating
                 when start =>
                     if (counter < sys_clk_freq) then
                         counter := counter + 1;
