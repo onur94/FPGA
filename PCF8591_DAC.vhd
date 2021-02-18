@@ -95,11 +95,11 @@ begin
                     case busy_cnt is
                         when 0 =>
                             i2c_ena <= '1';
-                            i2c_addr <= "1001000";
+                            i2c_addr <= "1001000";      -- Device Address 0x48
                             i2c_rw <= '0';
-                            i2c_data_wr <= "01000000";
+                            i2c_data_wr <= "01000000";  -- DAC Enable
 						when 1 =>
-							i2c_data_wr <= "01010111";
+							i2c_data_wr <= "01010111";  -- DAC Value
                         when 2 =>
                             i2c_ena <= '0';
                             if (i2c_busy = '0') then
@@ -118,10 +118,12 @@ begin
                     case busy_cnt is
                         when 0 =>
                             i2c_ena <= '1';
-                            i2c_addr <= "1001000";
-                            i2c_rw <= '1';
-                            i2c_data_wr <= "01000000";
-                        when 1 =>
+                            i2c_addr <= "1001000";      -- Device Address
+                            i2c_rw <= '0';
+                            i2c_data_wr <= "01000011";  -- AIN3 Enable
+						when 1 =>
+							i2c_rw <= '1';
+                        when 2 =>
                             i2c_ena <= '0';
                             if (i2c_busy = '0') then
                                 adc_data(7 downto 0) <= i2c_data_rd;
