@@ -30,8 +30,8 @@ architecture Behavioral of PWM is
     signal pwm_clock     : std_logic := '0';
 
 begin
-	process (clk)
-	begin
+    process (clk)
+    begin
         if rising_edge(clk) then
             divided_count <= divided_count + 1;
             if divided_count = clk_divider then
@@ -39,7 +39,7 @@ begin
                 divided_count <= 0;
             end if;
         end if;
-	end process;
+    end process;
 	
     pwm_out <= pwm_out_reg;
 	
