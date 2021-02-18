@@ -123,17 +123,17 @@ begin
                             i2c_addr <= "1001000";
                             i2c_rw <= '0';
                             i2c_data_wr <= "00000000";
-						when 1 =>
-							i2c_rw <= '1';
+                        when 1 =>
+                            i2c_rw <= '1';
                         when 2 =>
                             if (i2c_busy = '0') then
                                 temp_data(15 downto 8) <= i2c_data_rd;
                             end if;
-						when 3 =>
+                        when 3 =>
                             i2c_ena <= '0';
                             if (i2c_busy = '0') then
-								temp_data(7 downto 0) <= i2c_data_rd;
-								uart_active <= '1';
+                                temp_data(7 downto 0) <= i2c_data_rd;
+                                uart_active <= '1';
                                 busy_cnt := 0;
                                 state <= finish;
                             end if;
@@ -142,7 +142,7 @@ begin
 
                 --output the ADC data
                 when finish =>
-					temperature <= temp_data(14 downto 7);
+                    temperature <= temp_data(14 downto 7);
                     uart_active <= '0';
                     state <= start;
 
