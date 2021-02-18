@@ -102,7 +102,6 @@ begin
         elsif rising_edge(clk) then
             case state is
 
-                --give ADC sensor 100ms to power up before communicating
                 when start =>
                     if (counter < sys_clk_freq) then
                         counter := counter + 1;
@@ -111,7 +110,7 @@ begin
                         state <= start_adc;
                     end if;
 
-                --start ADC conversion
+                --start Temperature Request
                 when start_adc =>
                     busy_prev <= i2c_busy;
                     if (busy_prev = '0' and i2c_busy = '1') then
@@ -140,7 +139,7 @@ begin
                         when others => null;
                     end case;
 
-                --output the ADC data
+                --output the Temperature value
                 when finish =>
                     temperature <= temp_data(14 downto 7);
                     uart_active <= '0';
