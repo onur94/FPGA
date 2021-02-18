@@ -31,7 +31,7 @@ architecture behavior of PCF8591 is
     signal busy_prev    : std_logic;                        --previous value of i2c busy signal
     signal adc_data     : std_logic_vector(7 downto 0);     --adc data buffer
 
-    component i2c_master is
+    component I2C_Master is
         generic 
         (
             input_clk : integer;  --input clock speed from user logic in Hz
@@ -56,7 +56,7 @@ architecture behavior of PCF8591 is
 begin
 
     --instantiate the i2c master
-    i2c_master_0 : i2c_master
+    i2c_master_0 : I2C_Master
         generic map(input_clk => sys_clk_freq, bus_clk => 400_000)
         port map(clk => clk, reset => reset, ena => i2c_ena, addr => i2c_addr,
                  rw => i2c_rw, data_wr => i2c_data_wr, busy => i2c_busy,
