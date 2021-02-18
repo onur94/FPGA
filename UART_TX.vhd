@@ -16,8 +16,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
  
 entity UART_TX is
-  generic (
-    g_CLKS_PER_BIT : integer := 115     -- Needs to be set correctly
+    generic 
+    (
+        sys_clk_freq : integer := 50_000_000;
+        baud_rate    : integer := 115200
     );
   port (
     i_Clk       : in  std_logic;
@@ -31,7 +33,8 @@ end UART_TX;
  
  
 architecture RTL of UART_TX is
- 
+  constant g_CLKS_PER_BIT : integer := sys_clk_freq/baud_rate;
+  
   type t_SM_Main is (s_Idle, s_TX_Start_Bit, s_TX_Data_Bits,
                      s_TX_Stop_Bit, s_Cleanup);
   signal r_SM_Main : t_SM_Main := s_Idle;
