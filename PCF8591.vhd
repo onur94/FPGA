@@ -2,7 +2,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity PCF8591 is
-    generic (
+    generic 
+    (
         sys_clk_freq : integer := 50_000_000
     );
     port
@@ -31,9 +32,11 @@ architecture behavior of PCF8591 is
     signal adc_data     : std_logic_vector(7 downto 0);     --adc data buffer
 
     component i2c_master is
-        generic (
+        generic 
+        (
             input_clk : integer;  --input clock speed from user logic in Hz
-            bus_clk   : integer); --speed the i2c bus (scl) will run at in Hz
+            bus_clk   : integer   --speed the i2c bus (scl) will run at in Hz
+        ); 
         port
         (
             clk       : in     std_logic;                    --system clock
@@ -46,7 +49,8 @@ architecture behavior of PCF8591 is
             data_rd   : out    std_logic_vector(7 downto 0); --data read from slave
             ack_error : buffer std_logic;                    --flag if improper acknowledge from slave
             sda       : inout  std_logic;                    --serial data output of i2c bus
-            scl       : inout  std_logic);                   --serial clock output of i2c bus
+            scl       : inout  std_logic                     --serial clock output of i2c bus
+        );                   
     end component;
 
 begin
@@ -54,12 +58,10 @@ begin
     --instantiate the i2c master
     i2c_master_0 : i2c_master
     generic map(input_clk => sys_clk_freq, bus_clk => 400_000)
-    port map
-    (
-        clk => clk, reset => reset, ena => i2c_ena, addr => i2c_addr,
-        rw => i2c_rw, data_wr => i2c_data_wr, busy => i2c_busy,
-        data_rd => i2c_data_rd, ack_error => i2c_ack_err, sda => sda,
-        scl => scl);
+    port map(clk => clk, reset => reset, ena => i2c_ena, addr => i2c_addr,
+             rw => i2c_rw, data_wr => i2c_data_wr, busy => i2c_busy,
+             data_rd => i2c_data_rd, ack_error => i2c_ack_err, sda => sda,
+             scl => scl);
 
     adc_output <= adc_data;
 
