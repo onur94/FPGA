@@ -21,13 +21,14 @@ entity UART_TX is
         sys_clk_freq : integer := 50_000_000;
         baud_rate    : integer := 115200
     );
-  port (
-    i_Clk       : in  std_logic;
-    i_TX_DV     : in  std_logic;
-    i_TX_Byte   : in  std_logic_vector(7 downto 0);
-    o_TX_Active : out std_logic;
-    o_TX_Serial : out std_logic;
-    o_TX_Done   : out std_logic
+    port 
+    (
+        i_Clk       : in  std_logic;
+        i_TX_DV     : in  std_logic;
+        i_TX_Byte   : in  std_logic_vector(7 downto 0);
+        o_TX_Active : out std_logic;
+        o_TX_Serial : out std_logic;
+        o_TX_Done   : out std_logic
     );
 end UART_TX;
  
