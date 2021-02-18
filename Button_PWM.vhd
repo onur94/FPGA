@@ -7,7 +7,7 @@ entity Button_PWM is
     (
         button : in  std_logic;
         rst    : in  std_logic;
-        duty   : out std_logic_vector (7 downto 0) -- 50000
+        duty   : out std_logic_vector (7 downto 0) -- 255
     );
 end Button_PWM;
 
