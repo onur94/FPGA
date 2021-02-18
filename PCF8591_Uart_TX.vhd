@@ -59,7 +59,8 @@ architecture Behavioral of PCF8591_Uart_TX is
     component UART_TX is
         generic 
         (
-            g_CLKS_PER_BIT : integer
+            sys_clk_freq : integer := 50_000_000;
+            baud_rate    : integer := 115200
         );
         port
         (
@@ -83,7 +84,7 @@ begin
                  scl => scl);
 
     uart_tx_0 : UART_TX
-        generic map(g_CLKS_PER_BIT => 434) -- 50_000_000/115_200 = 434
+        generic map(sys_clk_freq => 50_000_000, baud_rate => 115200)
         port map(i_Clk => clk, i_TX_DV => uart_active, i_TX_Byte => adc_data,
                  o_TX_Active => open, o_TX_Serial => uart_output, o_TX_Done => open);
 
