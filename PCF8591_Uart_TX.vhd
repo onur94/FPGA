@@ -19,17 +19,17 @@ entity PCF8591_Uart_TX is
 end PCF8591_Uart_TX;
 
 architecture behavior of PCF8591_Uart_TX is
-    type machine is(start, start_adc, read_data, finish);
-    signal state : machine;
-    signal config       : std_logic_vector(7 downto 0); --value to set the Sensor Configuration Register
-    signal i2c_ena      : std_logic;                    --i2c enable signal
-    signal i2c_addr     : std_logic_vector(6 downto 0); --i2c address signal
-    signal i2c_rw       : std_logic;                    --i2c read/write command signal
-    signal i2c_data_wr  : std_logic_vector(7 downto 0); --i2c write data
-    signal i2c_data_rd  : std_logic_vector(7 downto 0); --i2c read data
-    signal i2c_busy     : std_logic;                    --i2c busy signal
-    signal busy_prev    : std_logic;                    --previous value of i2c busy signal
-    signal adc_data     : std_logic_vector(7 downto 0); --adc data buffer
+    type machine is(start, start_adc, read_data, finish);   --needed states
+    signal state : machine;                                 --state machine
+    signal config       : std_logic_vector(7 downto 0);     --value to set the Sensor Configuration Register
+    signal i2c_ena      : std_logic;                        --i2c enable signal
+    signal i2c_addr     : std_logic_vector(6 downto 0);     --i2c address signal
+    signal i2c_rw       : std_logic;                        --i2c read/write command signal
+    signal i2c_data_wr  : std_logic_vector(7 downto 0);     --i2c write data
+    signal i2c_data_rd  : std_logic_vector(7 downto 0);     --i2c read data
+    signal i2c_busy     : std_logic;                        --i2c busy signal
+    signal busy_prev    : std_logic;                        --previous value of i2c busy signal
+    signal adc_data     : std_logic_vector(7 downto 0);     --adc data buffer
 
     component I2C_Master is
         generic 
@@ -85,7 +85,7 @@ begin
     uart_tx_0 : UART_TX
         generic map(g_CLKS_PER_BIT => 434) -- 50_000_000/115_200 = 434
         port map(i_Clk => clk, i_TX_DV => uart_active, i_TX_Byte => adc_data,
-                o_TX_Active => open, o_TX_Serial => uart_output, o_TX_Done => open);
+                 o_TX_Active => open, o_TX_Serial => uart_output, o_TX_Done => open);
 
     adc_output <= adc_data;
 
@@ -103,7 +103,7 @@ begin
         elsif rising_edge(clk) then
             case state is
 
-                    --give ADC sensor 100ms to power up before communicating
+                --give ADC sensor 100ms to power up before communicating
                 when start =>
                     if (counter < sys_clk_freq) then
                         counter := counter + 1;
@@ -112,7 +112,7 @@ begin
                         state <= start_adc;
                     end if;
 
-                    --start ADC conversion
+                --start ADC conversion
                 when start_adc =>
                     busy_prev <= i2c_busy;
                     if (busy_prev = '0' and i2c_busy = '1') then
@@ -133,7 +133,7 @@ begin
                         when others => null;
                     end case;
 
-                    --read ADC data
+                --read ADC data
                 when read_data =>
                     busy_prev <= i2c_busy;
                     if (busy_prev = '0' and i2c_busy = '1') then
@@ -156,12 +156,12 @@ begin
                         when others => null;
                     end case;
 
-                    --output the ADC data
+                --output the ADC data
                 when finish =>
                     uart_active <= '0';
                     state <= start;
 
-                    --default to start state
+                --default to start state
                 when others =>
                     state <= start;
 
