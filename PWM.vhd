@@ -20,14 +20,14 @@ entity PWM is
 end PWM;
 
 architecture Behavioral of PWM is
-    constant period         : integer := 2**pwm_resolution - 1;
-    constant clk_divider    : integer := clk_freq/pwm_freq/period/2;
+    constant period      : integer := 2**pwm_resolution - 1;
+    constant clk_divider : integer := clk_freq/pwm_freq/period/2;
 	
-    signal count            : integer range 0 to period + 1 := 0;
-    signal pwm_out_reg      : std_logic := '0';
+    signal count         : integer range 0 to period + 1 := 0;
+    signal pwm_out_reg   : std_logic := '0';
 	
-    signal divided_count    : integer range 0 to clk_divider := 0;
-    signal pwm_clock        : std_logic := '0';
+    signal divided_count : integer range 0 to clk_divider := 0;
+    signal pwm_clock     : std_logic := '0';
 
 begin
 	process (clk)
