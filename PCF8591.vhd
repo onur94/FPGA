@@ -57,11 +57,11 @@ begin
 
     --instantiate the i2c master
     i2c_master_0 : i2c_master
-    generic map(input_clk => sys_clk_freq, bus_clk => 400_000)
-    port map(clk => clk, reset => reset, ena => i2c_ena, addr => i2c_addr,
-             rw => i2c_rw, data_wr => i2c_data_wr, busy => i2c_busy,
-             data_rd => i2c_data_rd, ack_error => i2c_ack_err, sda => sda,
-             scl => scl);
+        generic map(input_clk => sys_clk_freq, bus_clk => 400_000)
+        port map(clk => clk, reset => reset, ena => i2c_ena, addr => i2c_addr,
+                 rw => i2c_rw, data_wr => i2c_data_wr, busy => i2c_busy,
+                 data_rd => i2c_data_rd, ack_error => i2c_ack_err, sda => sda,
+                 scl => scl);
 
     adc_output <= adc_data;
 
