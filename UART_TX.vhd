@@ -33,7 +33,7 @@ entity UART_TX is
 end UART_TX;
  
  
-architecture RTL of UART_TX is
+architecture Behavioral of UART_TX is
   constant g_CLKS_PER_BIT : integer := sys_clk_freq/baud_rate;
   
   type t_SM_Main is (s_Idle, s_TX_Start_Bit, s_TX_Data_Bits,
@@ -136,4 +136,4 @@ begin
  
   o_TX_Done <= r_TX_Done;
    
-end RTL;
+end Behavioral;
