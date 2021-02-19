@@ -28,13 +28,15 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.ALL;
  
 entity FIFO is
-  generic (
+  generic 
+  (
     g_WIDTH    : natural := 8;
     g_DEPTH    : integer := 32;
     g_AF_LEVEL : integer := 28;
     g_AE_LEVEL : integer := 4
-    );
-  port (
+  );
+  port 
+  (
     i_rst_sync : in std_logic;
     i_clk      : in std_logic;
  
@@ -49,10 +51,10 @@ entity FIFO is
     o_rd_data : out std_logic_vector(g_WIDTH-1 downto 0);
     o_ae      : out std_logic;
     o_empty   : out std_logic
-    );
+  );
 end FIFO;
  
-architecture rtl of FIFO is
+architecture Behavioral of FIFO is
  
   type t_FIFO_DATA is array (0 to g_DEPTH-1) of std_logic_vector(g_WIDTH-1 downto 0);
   signal r_FIFO_DATA : t_FIFO_DATA := (others => (others => '0'));
@@ -145,4 +147,4 @@ begin
   -- synthesis translate_on
      
    
-end rtl;
+end Behavioral;
