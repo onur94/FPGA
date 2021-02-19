@@ -16,18 +16,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
  
 entity UART_RX is
-	generic 
-	(
-		sys_clk_freq : integer := 50_000_000;
-		baud_rate    : integer := 115200
-	);
-	port 
-	(
-		i_Clk       : in  std_logic;
-		i_RX_Serial : in  std_logic;
-		o_RX_DV     : out std_logic;
-		o_RX_Byte   : out std_logic_vector(7 downto 0)
-	);
+    generic 
+    (
+        sys_clk_freq : integer := 50_000_000;
+        baud_rate    : integer := 115200
+    );
+    port 
+    (
+        i_Clk       : in  std_logic;
+        i_RX_Serial : in  std_logic;
+        o_RX_DV     : out std_logic;
+        o_RX_Byte   : out std_logic_vector(7 downto 0)
+    );
 end UART_RX;
  
  
