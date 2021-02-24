@@ -38,7 +38,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity SPI_Master is
-	generic 
+	generic a
 	(
 		c_clkfreq 			: integer := 50_000_000;
 		c_sclkfreq 			: integer := 1_000_000;
