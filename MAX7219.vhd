@@ -30,13 +30,15 @@ architecture Behavioral of MAX7219 is
     signal data_ready : std_logic;
     
     component SPI_Master is
-        generic (
+        generic 
+        (
             c_clkfreq : integer;
             c_sclkfreq : integer;
             c_cpol : std_logic := '0';
             c_cpha : std_logic := '0'
         );
-        port (
+        port 
+        (
             clk_i         : in STD_LOGIC;
             en_i          : in STD_LOGIC;
             mosi_data_i   : in STD_LOGIC_VECTOR (7 downto 0);
