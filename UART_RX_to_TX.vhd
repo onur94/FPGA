@@ -37,7 +37,7 @@ begin
                     end if;
                 when active_uart =>
                     if (tx_busy = '0') then
-						tx_valid <= '1';
+                        tx_valid <= '1';
                         state <= deactive_uart;
                     else
                         state <= active_uart;
