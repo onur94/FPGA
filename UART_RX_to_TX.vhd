@@ -35,6 +35,7 @@ begin
                         output_reg <= rx_data;
                         state <= active_uart;
                     end if;
+                    
                 when active_uart =>
                     if (tx_busy = '0') then
                         tx_valid <= '1';
@@ -42,6 +43,7 @@ begin
                     else
                         state <= active_uart;
                     end if;
+                    
                 when deactive_uart =>
                     tx_valid <= '0';
                     state <= read_data;
