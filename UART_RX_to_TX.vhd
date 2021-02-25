@@ -7,7 +7,7 @@ entity UART_RX_to_TX is
         rst        : in  std_logic;
         clk        : in  std_logic;
         rx_data    : in  std_logic_vector(7 downto 0);
-		rx_valid   : in  std_logic := '0';
+        rx_valid   : in  std_logic := '0';
         tx_valid   : out std_logic := '0';
         tx_busy    : in  std_logic;
         tx_data    : out std_logic_vector(7 downto 0)
