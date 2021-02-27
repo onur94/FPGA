@@ -1,6 +1,5 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
-use IEEE.STD_LOGIC_UNSIGNED.all;
 
 entity SPI_SLAVE_Read is
     port
