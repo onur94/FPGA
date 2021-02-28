@@ -86,7 +86,7 @@ begin
                 when start =>
                     enable <= '1';
                     mosi_data <= spi_data(state_counter);
-                    state <= finish;;
+                    state <= finish;
 
                 when finish =>
                     if data_ready = '1' then
