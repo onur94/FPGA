@@ -60,11 +60,9 @@ begin
 
     SPI_Slave_0 : SPI_Slave
     generic map(N => 8, CPOL => '0', CPHA => '0', PREFETCH => 1)
-    port map
-    (
-        clk_i => clk, spi_ssel_i => cs, spi_sck_i => sclk, spi_mosi_i => mosi, spi_miso_o => miso,
-        di_req_o => open, di_i => miso_data, wren_i => wren, wr_ack_o => wrack_out, do_valid_o => data_valid,
-        do_o => mosi_data);
+    port map(clk_i => clk, spi_ssel_i => cs, spi_sck_i => sclk, spi_mosi_i => mosi, spi_miso_o => miso,
+             di_req_o => open, di_i => miso_data, wren_i => wren, wr_ack_o => wrack_out, do_valid_o => data_valid,
+             do_o => mosi_data);
 
     wren_out <= wren;
 
