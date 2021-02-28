@@ -58,9 +58,9 @@ begin
 
     --instantiate the SPI Master
     SPI_Master_0 : SPI_Master
-    generic map(c_clkfreq => sys_clk_freq, c_sclkfreq => spi_clk_freq, c_cpol => '0', c_cpha => '0')
-    port map(clk_i => clk, en_i => enable, mosi_data_i => mosi_data, miso_data_o => miso_data,
-             data_ready_o => data_ready, cs_o => cs, sclk_o => sclk, mosi_o => mosi, miso_i => miso);
+        generic map(c_clkfreq => sys_clk_freq, c_sclkfreq => spi_clk_freq, c_cpol => '0', c_cpha => '0')
+        port map(clk_i => clk, en_i => enable, mosi_data_i => mosi_data, miso_data_o => miso_data,
+                 data_ready_o => data_ready, cs_o => cs, sclk_o => sclk, mosi_o => mosi, miso_i => miso);
 
     process (clk)
         variable counter : integer range 0 to sys_clk_freq := 0;
