@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
 
-entity SPI_SLAVE_Read is
+entity SPI_Slave_Read is
     port
     (
         clk        : in  std_logic;
@@ -17,9 +17,9 @@ entity SPI_SLAVE_Read is
         pattern    : out std_logic;
         wren_out   : out std_logic
     );
-end SPI_SLAVE_Read;
+end SPI_Slave_Read;
 
-architecture Behavioral of SPI_SLAVE_Read is
+architecture Behavioral of SPI_Slave_Read is
     type states is (idle, sent);
     signal state : states;
 
