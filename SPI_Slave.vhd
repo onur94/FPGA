@@ -141,12 +141,15 @@ use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 
 entity SPI_Slave is
-    Generic (   
+    generic 
+    (   
         N : positive := 32;                                             -- 32bit serial word length is default
         CPOL : std_logic := '0';                                        -- SPI mode selection (mode 0 default)
         CPHA : std_logic := '0';                                        -- CPOL = clock polarity, CPHA = clock phase.
-        PREFETCH : positive := 3);                                      -- prefetch lookahead cycles
-    Port (  
+        PREFETCH : positive := 3                                        -- prefetch lookahead cycles
+    );                                      
+    port 
+    (  
         clk_i : in std_logic := 'X';                                    -- internal interface clock (clocks di/do registers)
         spi_ssel_i : in std_logic := 'X';                               -- spi bus slave select line
         spi_sck_i : in std_logic := 'X';                                -- spi bus sck clock (clocks the shift register core)
