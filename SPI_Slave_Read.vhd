@@ -58,6 +58,7 @@ architecture Behavioral of SPI_Slave_Read is
     end component;
 begin
 
+    --instantiate the SPI Slave
     SPI_Slave_0 : SPI_Slave
         generic map(N => 8, CPOL => '0', CPHA => '0', PREFETCH => 1)
         port map(clk_i => clk, spi_ssel_i => cs, spi_sck_i => sclk, spi_mosi_i => mosi, spi_miso_o => miso,
