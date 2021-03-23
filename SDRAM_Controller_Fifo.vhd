@@ -185,7 +185,5 @@ begin
                 DATA_Output <= DATA;
             end if;
         end if;
-    end if;
-end if;
-end process;
+    end process;
 end Behavioral;
