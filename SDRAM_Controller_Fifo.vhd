@@ -72,8 +72,7 @@ begin
         port_BURST,
         port_BUSY, port_READY);
 
-    process (PLLClock, port
-        _BUSY)
+    process (PLLClock, port_BUSY)
         variable state : integer range 0 to 10001 := 0;
         variable write_active : std_logic := '1';
         variable counter : integer range 0 to 20_000_000;
