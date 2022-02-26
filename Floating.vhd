@@ -4,13 +4,13 @@ use work.float_pkg.all;
 use IEEE.numeric_std.all;
 
 entity Floating is
-  Generic (
-    constant pi : real := 3.14
-  );
-  Port (
-    clk : in std_logic;
-    input_x : in integer
-  );
+    Generic (
+        constant pi : real := 3.14
+    );
+    Port (
+        clk : in std_logic;
+        input_x : in integer
+    );
 end Floating;
 
 architecture Behavioral of Floating is
