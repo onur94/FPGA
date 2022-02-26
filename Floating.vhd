@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 
 entity Floating is
     Generic (
-        constant pi : real := 3.14
+        constant pi : real := 3.1415
     );
     Port (
         clk : in std_logic;
